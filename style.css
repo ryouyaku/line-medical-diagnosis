@@ -1,0 +1,89 @@
+.btn-primary {
+    background-color: #06b6d4;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-primary:hover {
+    background-color: #0891b2;
+}
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #1e293b;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-secondary:hover {
+    background-color: #cbd5e1;
+}
+.progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e2e8f0;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    background-color: #06b6d4;
+    transition: width 0.3s ease;
+}
+.radio-option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.radio-option:hover {
+    background-color: #f8fafc;
+}
+.radio-option.selected {
+    border-color: #06b6d4;
+    background-color: #ecfeff;
+}
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.checkbox-option:hover {
+    background-color: #f8fafc;
+}
+.checkbox-option.selected {
+    border-color: #06b6d4;
+    background-color: #ecfeff;
+}
+.result-category {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.result-high {
+    background-color: #dcfce7;
+    color: #166534;
+}
+.result-medium {
+    background-color: #fef9c3;
+    color: #854d0e;
+}
+.result-conditional {
+    background-color: #ffedd5;
+    color: #9a3412;
+}
+.result-low {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
