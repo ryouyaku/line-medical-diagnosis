@@ -22,11 +22,13 @@ const questions = [
         type: 'radio',
         options: [
             { value: 'hospital', text: '病院', score: 5 },
-            { value: 'clinic', text: 'クリニック', score: 8 },
+            { value: 'clinic', text: 'クリニック（内科・外科・小児科等）', score: 8 },
             { value: 'dental', text: '歯科医院', score: 7 },
             { value: 'orthopedic', text: '整骨院・整形外科', score: 6 },
-            { value: 'dermatology', text: '皮膚科', score: 7 },
-            { value: 'ophthalmology', text: '眼科', score: 6 },
+            { value: 'dermatology', text: '皮膚科クリニック', score: 8 },
+            { value: 'ophthalmology', text: '眼科クリニック', score: 7 },
+            { value: 'obstetrics', text: '産婦人科クリニック', score: 8 },
+            { value: 'beauty', text: '美容クリニック', score: 9 },
             { value: 'other', text: 'その他専門科', score: 5 }
         ]
     },
@@ -39,7 +41,8 @@ const questions = [
             { value: 'regular', text: '定期的な通院が必要', score: 10 },
             { value: 'irregular', text: '不定期の通院', score: 7 },
             { value: 'emergency', text: '緊急時のみの受診', score: 3 },
-            { value: 'preventive', text: '予防・検診中心', score: 9 }
+            { value: 'preventive', text: '予防・検診中心', score: 9 },
+            { value: 'beauty', text: '美容目的の通院', score: 10 }
         ]
     },
     {
@@ -48,7 +51,10 @@ const questions = [
         text: '患者層の年齢構成はどのようになっていますか？',
         type: 'radio',
         options: [
-            { value: 'young', text: '若年層中心', score: 10 },
+            { value: 'young', text: '若年層（10代〜20代）中心', score: 10 },
+            { value: 'middle', text: '中年層（30代〜40代）中心', score: 9 },
+            { value: 'reproductive', text: '妊娠・出産年齢層中心', score: 8 },
+            { value: 'beauty', text: '美容関心層（20代〜50代）', score: 10 },
             { value: 'mixed', text: '幅広い年齢層', score: 7 },
             { value: 'senior', text: 'シニア層中心', score: 5 }
         ]
@@ -62,6 +68,7 @@ const questions = [
             { value: 'newPatients', text: '新規患者獲得', score: 2 },
             { value: 'revisitRate', text: '再診率向上', score: 2 },
             { value: 'reservationManagement', text: '予約管理の効率化', score: 2 },
+            { value: 'staffWorkload', text: '事務スタッフの負担軽減', score: 2 },
             { value: 'infoSharing', text: '診療案内の周知', score: 1 },
             { value: 'healthInfo', text: '健康情報提供', score: 1 },
             { value: 'communication', text: '患者とのコミュニケーション強化', score: 2 }
@@ -76,6 +83,7 @@ const questions = [
             { value: 'faceOnly', text: '対面のみ', score: 3 },
             { value: 'phoneMain', text: '電話中心', score: 5 },
             { value: 'emailUse', text: 'メール活用', score: 7 },
+            { value: 'socialMedia', text: 'SNS活用', score: 8 },
             { value: 'appUse', text: '独自アプリ活用', score: 6 },
             { value: 'paperBased', text: '紙媒体中心', score: 4 }
         ]
@@ -83,27 +91,27 @@ const questions = [
     {
         id: 'differentiation',
         category: 'goals',
-        text: '医療機関としての差別化ポイントは何ですか？',
-        type: 'radio',
+        text: '医療機関としての差別化ポイントは何ですか？（複数選択可）',
+        type: 'checkbox',
         options: [
-            { value: 'expertise', text: '専門性の高さ', score: 6 },
-            { value: 'detailedExplanation', text: '丁寧な説明・対応', score: 8 },
-            { value: 'latestEquipment', text: '最新設備', score: 5 },
-            { value: 'goodAccess', text: 'アクセスの良さ', score: 6 },
-            { value: 'easyReservation', text: '予約の取りやすさ', score: 9 },
-            { value: 'shortWaitTime', text: '待ち時間の少なさ', score: 7 }
+            { value: 'expertise', text: '専門性の高さ', score: 1.5 },
+            { value: 'detailedExplanation', text: '丁寧な説明・対応', score: 2 },
+            { value: 'latestEquipment', text: '最新設備', score: 1.5 },
+            { value: 'goodAccess', text: 'アクセスの良さ', score: 1.5 },
+            { value: 'easyReservation', text: '予約の取りやすさ', score: 2 },
+            { value: 'shortWaitTime', text: '待ち時間の少なさ', score: 1.5 }
         ]
     },
     {
         id: 'patientRelationship',
         category: 'relationship',
-        text: '患者との関係性の特徴として最も当てはまるものを選択してください',
+        text: '患者との関係性の特徴として当てはまるものを選択してください',
         type: 'radio',
         options: [
             { value: 'longTerm', text: '長期的な関係構築が中心', score: 10 },
             { value: 'temporary', text: '一時的な対応が中心', score: 4 },
             { value: 'preventive', text: '予防・定期検診中心', score: 8 },
-            { value: 'mixed', text: '混合', score: 6 }
+            { value: 'mixed', text: '複数当てはまる', score: 6 }
         ]
     },
     {
@@ -116,7 +124,8 @@ const questions = [
             { value: 'webReservation', text: 'Webサイトから予約', score: 8 },
             { value: 'appReservation', text: 'アプリ予約', score: 9 },
             { value: 'counterReservation', text: '受付での直接予約', score: 4 },
-            { value: 'reservationSystem', text: '予約システム使用', score: 7 }
+            { value: 'reservationSystem', text: '予約システム使用', score: 7 },
+            { value: 'noReservation', text: '予約は行なっていない', score: 3 }
         ]
     },
     {
@@ -150,8 +159,9 @@ const questions = [
         type: 'radio',
         options: [
             { value: 'realtime', text: 'リアルタイム対応希望', score: 5 },
-            { value: 'businessHours', text: '営業時間内の対応で十分', score: 8 },
-            { value: 'automated', text: '自動応答で十分', score: 10 },
+            { value: '24hours', text: '土日も含めて24時間以内の対応希望', score: 7 },
+            { value: 'businessHours', text: '営業時間内での対応希望', score: 8 },
+            { value: 'automated', text: '自動応答希望', score: 10 },
             { value: 'undecided', text: '未定', score: 5 }
         ]
     },
@@ -235,6 +245,7 @@ async function initializeLiff() {
             <div class="p-4 bg-red-100 text-red-700 rounded-lg">
                 <p class="font-bold">エラーが発生しました</p>
                 <p>アプリの読み込みに失敗しました。再度お試しください。</p>
+                <p>詳細: ${error.message}</p>
             </div>
         `;
     }
@@ -263,7 +274,11 @@ function renderApp() {
 function renderStartScreen(element) {
     element.innerHTML = `
         <div class="flex flex-col items-center justify-center min-h-screen text-center">
-            <img src="https://placehold.jp/06b6d4/ffffff/150x150.png?text=診断" alt="LINE運用診断" class="w-32 h-32 mb-6 rounded-full shadow-lg">
+            <div class="w-32 h-32 mb-6 rounded-full shadow-lg bg-green-500 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-20 h-20 fill-white">
+                    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                </svg>
+            </div>
             <h1 class="text-2xl font-bold text-gray-800 mb-2">医療機関向けLINE運用診断</h1>
             <p class="text-gray-600 mb-6">あなたの医療機関にLINE活用が適しているかを診断します</p>
             <div class="bg-white p-6 rounded-lg shadow-md w-full mb-6">
@@ -401,6 +416,12 @@ function setupQuestionEventListeners(question) {
             if (appState.currentQuestionIndex === questions.length - 1) {
                 calculateResult();
                 appState.currentScreen = 'result';
+                // 診断結果画面に遷移したら自動的に結果を送信
+                if (liff.isInClient()) {
+                    setTimeout(() => {
+                        sendResultMessage();
+                    }, 500);
+                }
             } else {
                 appState.currentQuestionIndex++;
             }
@@ -543,10 +564,27 @@ function renderResultScreen(element) {
                     </div>
                 </div>
                 
-                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <p class="text-gray-700 mb-2">診断結果に基づく詳しいアドバイスやお悩みをお聞きしたい場合は、ぜひご相談ください。</p>
-                    <button id="sendResultBtn" class="btn-primary w-full mb-2">結果をメッセージで送信する</button>
-                    <button id="consultBtn" class="btn-secondary w-full">専門家に相談する</button>
+                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200 mb-4">
+                    <p class="text-gray-700 mb-3">診断結果に基づく詳しいアドバイスやお悩みをお聞きしたい場合は、ぜひご相談ください。</p>
+                    <div class="space-y-2">
+                        <button id="consultBtn" class="btn-primary w-full bg-green-500 hover:bg-green-600 transition-colors text-white py-3 rounded-lg shadow-md flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                            専門家に相談する
+                        </button>
+                        <button id="contactBtn" class="btn-secondary w-full bg-blue-500 hover:bg-blue-600 transition-colors text-white py-3 rounded-lg shadow-md flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                            お問い合わせ
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-center text-sm text-gray-500 mb-2">
+                    <p>診断結果は自動的にメッセージとして送信されました</p>
                 </div>
             </div>
             
@@ -560,16 +598,16 @@ function renderResultScreen(element) {
 
 // 結果画面のイベントリスナー設定
 function setupResultEventListeners() {
-    // 結果送信ボタン
-    const sendResultBtn = document.getElementById('sendResultBtn');
-    if (sendResultBtn) {
-        sendResultBtn.addEventListener('click', sendResultMessage);
-    }
-    
     // 相談ボタン
     const consultBtn = document.getElementById('consultBtn');
     if (consultBtn) {
         consultBtn.addEventListener('click', sendConsultMessage);
+    }
+    
+    // お問い合わせボタン
+    const contactBtn = document.getElementById('contactBtn');
+    if (contactBtn) {
+        contactBtn.addEventListener('click', sendContactMessage);
     }
     
     // やり直しボタン
@@ -592,7 +630,7 @@ function setupResultEventListeners() {
 // 診断結果のメッセージ送信
 async function sendResultMessage() {
     if (!liff.isInClient()) {
-        alert('この機能はLINE内でのみ使用できます');
+        console.log('LINE以外の環境では結果送信はスキップされます');
         return;
     }
     
@@ -676,10 +714,9 @@ async function sendResultMessage() {
         };
         
         await liff.sendMessages([message]);
-        alert('診断結果を送信しました');
+        console.log('診断結果を自動送信しました');
     } catch (error) {
         console.error('メッセージ送信エラー', error);
-        alert('メッセージの送信に失敗しました');
     }
 }
 
@@ -730,6 +767,33 @@ async function sendConsultMessage() {
         alert('相談メッセージを送信しました。専門家からのご連絡をお待ちください。');
     } catch (error) {
         console.error('相談メッセージ送信エラー', error);
+        alert('メッセージの送信に失敗しました');
+    }
+}
+
+// お問い合わせメッセージの送信
+async function sendContactMessage() {
+    if (!liff.isInClient()) {
+        alert('この機能はLINE内でのみ使用できます');
+        return;
+    }
+    
+    try {
+        let resultCategory;
+        if (appState.result.score >= 80) resultCategory = '高適性';
+        else if (appState.result.score >= 60) resultCategory = '中適性';
+        else if (appState.result.score >= 40) resultCategory = '条件付き適性';
+        else resultCategory = '低適性';
+        
+        const contactMessage = {
+            type: 'text',
+            text: `【LINE運用診断お問い合わせ】\n\n診断結果: ${appState.result.score}点 (${resultCategory})\n\nLINE活用についてのお問い合わせをさせていただきます。詳細な情報をいただけますか？`
+        };
+        
+        await liff.sendMessages([contactMessage]);
+        alert('お問い合わせメッセージを送信しました。担当者からのご連絡をお待ちください。');
+    } catch (error) {
+        console.error('お問い合わせメッセージ送信エラー', error);
         alert('メッセージの送信に失敗しました');
     }
 }
